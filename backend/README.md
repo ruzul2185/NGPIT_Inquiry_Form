@@ -63,7 +63,7 @@ datasource db {
 
 Run the following SQL query in the Supabase SQL Editor to create the `inquiries` table:
 
-``` postgresql
+``` PostgreSQL
 CREATE TABLE public.inquiries (
   id bigint GENERATED ALWAYS AS IDENTITY NOT NULL,
   created_at timestamp with time zone NOT NULL DEFAULT now(),
