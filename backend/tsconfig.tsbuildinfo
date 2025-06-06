@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/client/prismaClient.ts","./src/controllers/appScriptController.ts","./src/controllers/inquiryController.ts","./src/routes/appScriptRoutes.ts","./src/routes/inquiryRoutes.ts","./src/types/appScriptTypes.ts","./src/utils/inquiryUtils.ts"],"version":"5.8.3"}

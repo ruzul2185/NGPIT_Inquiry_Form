@@ -1,13 +1,16 @@
 import { Request, Response } from 'express';
-import { PrismaClient, Prisma } from '../../generated/prisma/index.js';
-const prisma = new PrismaClient();
+import prisma from '../client/prismaClient';
 
-import { InquiryBodyInput } from '../types/appScriptTypes.js';
+import { Prisma } from '../../generated/prisma/index';
+
+import { InquiryBodyInput } from '../types/appScriptTypes';
 
 const submitHandler = async (req: Request<{}, {}, InquiryBodyInput>, res: Response) => {
-  const body = req.body;
 
   try {
+
+    const body = req.body;
+
     const data: Prisma.inquiriesCreateInput = {
       full_name: body["Full Name"],
       phone_number: new Prisma.Decimal(body["Phone Number"]),
@@ -29,7 +32,7 @@ const submitHandler = async (req: Request<{}, {}, InquiryBodyInput>, res: Respon
       recent_education: body["Last Education"] || null,
       passing_year:
         body["Passing Year"] && !isNaN(Number(body["Passing Year"]))
-          ? new Prisma.Decimal(Number(body["Passing Year"]))
+          ? BigInt(body["Passing Year"])  // Changed from Prisma.Decimal to BigInt
           : null,
       cgpa: body["CGPA"] && !isNaN(Number(body["CGPA"])) ? parseFloat(body["CGPA"]) : null,
     };
@@ -37,9 +40,11 @@ const submitHandler = async (req: Request<{}, {}, InquiryBodyInput>, res: Respon
     const inquiry = await prisma.inquiries.create({ data });
 
     res.status(200);
+    return; 
   } catch (err) {
     console.error('Error saving to Supabase:', err);
     res.status(500);
+    return
   }
 };
 

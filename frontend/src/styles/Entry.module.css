@@ -1,0 +1,28 @@
+.entryCell {
+  color: black;
+  padding: 12px 22px;
+}
+
+.entryActions {
+  padding: 12px 22px;
+}
+
+.entryRow {
+  background-color: aliceblue;
+}
+
+.viewButton {
+  background-color: #007FFF;
+}
+
+.updateButton {
+  background-color: #FFD58B;
+}
+
+.deleteButton {
+  background-color: #FF2800;
+}
+
+.actionButton {
+  font-weight: bolder;
+}
